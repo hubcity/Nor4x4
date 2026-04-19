@@ -16,6 +16,7 @@ import com.example.nor4x4.timer.TimerViewModel
 import com.example.nor4x4.ui.CustomConfigScreen
 import com.example.nor4x4.ui.StartScreen
 import com.example.nor4x4.ui.TimerScreen
+import androidx.compose.runtime.collectAsState
 
 class MainActivity : ComponentActivity() {
 
@@ -36,7 +37,7 @@ class MainActivity : ComponentActivity() {
             MaterialTheme {
                 val navController = rememberNavController()
                 
-                val isTimerActive = timerViewModel.currentPhase.value != com.example.nor4x4.timer.TimerPhase.Finished
+                val isTimerActive = timerViewModel.currentPhase.collectAsState().value != com.example.nor4x4.timer.TimerPhase.Finished
                 val startDest = if (isTimerActive) "timer" else "start"
                 
                 NavHost(
