@@ -35,6 +35,9 @@ object TimerManager {
     private val _isRunning = MutableStateFlow(false)
     val isRunning: StateFlow<Boolean> = _isRunning.asStateFlow()
 
+    private val _isWorkoutActive = MutableStateFlow(false)
+    val isWorkoutActive: StateFlow<Boolean> = _isWorkoutActive.asStateFlow()
+
     private val _heartRate = MutableStateFlow(0.0)
     val heartRate: StateFlow<Double> = _heartRate.asStateFlow()
 
@@ -65,6 +68,10 @@ object TimerManager {
         this.config = newConfig
         generatePhases()
         resetTimer()
+    }
+
+    fun setWorkoutActive(active: Boolean) {
+        _isWorkoutActive.value = active
     }
 
     private fun generatePhases() {

@@ -17,6 +17,7 @@ class TimerViewModel(application: Application) : AndroidViewModel(application) {
     val heartRate: StateFlow<Double> = TimerManager.heartRate
     val maxHeartRate: StateFlow<Double> = TimerManager.maxHeartRate
     val minHeartRate: StateFlow<Double> = TimerManager.minHeartRate
+    val isWorkoutActive: StateFlow<Boolean> = TimerManager.isWorkoutActive
 
     fun setConfig(newConfig: WorkoutConfig) {
         TimerManager.setConfig(newConfig)
@@ -28,6 +29,10 @@ class TimerViewModel(application: Application) : AndroidViewModel(application) {
 
     fun resetTimer() {
         TimerManager.resetTimer()
+    }
+
+    fun setWorkoutActive(active: Boolean) {
+        TimerManager.setWorkoutActive(active)
     }
 
     private val prefs = application.getSharedPreferences("Nor4x4Prefs", android.content.Context.MODE_PRIVATE)

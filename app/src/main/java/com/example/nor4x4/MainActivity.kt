@@ -37,8 +37,8 @@ class MainActivity : ComponentActivity() {
             MaterialTheme {
                 val navController = rememberNavController()
                 
-                val isTimerActive = timerViewModel.currentPhase.collectAsState().value != com.example.nor4x4.timer.TimerPhase.Finished
-                val startDest = if (isTimerActive) "timer" else "start"
+                val isWorkoutActive = timerViewModel.isWorkoutActive.collectAsState().value
+                val startDest = if (isWorkoutActive) "timer" else "start"
                 
                 NavHost(
                     navController = navController,
@@ -48,6 +48,7 @@ class MainActivity : ComponentActivity() {
                         StartScreen(
                             onStandardClick = { config ->
                                 timerViewModel.setConfig(config)
+                                timerViewModel.setWorkoutActive(true)
                                 navController.navigate("timer") { popUpTo(0) }
                             },
                             onCustomClick = {
@@ -62,6 +63,7 @@ class MainActivity : ComponentActivity() {
                             onStartClick = { config ->
                                 timerViewModel.saveCustomConfig(config)
                                 timerViewModel.setConfig(config)
+                                timerViewModel.setWorkoutActive(true)
                                 navController.navigate("timer") { popUpTo(0) }
                             }
                         )
@@ -70,6 +72,7 @@ class MainActivity : ComponentActivity() {
                         TimerScreen(
                             viewModel = timerViewModel,
                             onResetClick = {
+                                timerViewModel.setWorkoutActive(false)
                                 navController.navigate("start") { popUpTo(0) }
                             }
                         )
