@@ -1,6 +1,7 @@
 package com.example.nor4x4.timer
 
 import android.content.Context
+import android.os.PowerManager
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.media.RingtoneManager
@@ -20,6 +21,7 @@ object TimerManager {
     private var healthServicesManager: HealthServicesManager? = null
     private var vibrator: Vibrator? = null
     private var applicationContext: Context? = null
+    private var wakeLock: PowerManager.WakeLock? = null
 
     private var phases: List<TimerPhase> = listOf(TimerPhase.Finished)
     private var currentPhaseIndex = 0
@@ -53,6 +55,9 @@ object TimerManager {
             applicationContext = context.applicationContext
             healthServicesManager = HealthServicesManager(context.applicationContext)
             vibrator = context.getSystemService(Vibrator::class.java)
+            
+            val powerManager = context.getSystemService(Context.POWER_SERVICE) as PowerManager
+            wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Nor4x4:TimerWakeLock")
         }
     }
 
@@ -101,6 +106,8 @@ object TimerManager {
             val intent = Intent(ctx, TimerService::class.java)
             ctx.startForegroundService(intent)
         }
+        
+        wakeLock?.acquire()
 
         timerJob = scope.launch {
             while (_isRunning.value && _timeLeftInPhase.value > 0) {
@@ -124,6 +131,10 @@ object TimerManager {
         applicationContext?.let { ctx ->
             val intent = Intent(ctx, TimerService::class.java)
             ctx.stopService(intent)
+        }
+        
+        if (wakeLock?.isHeld == true) {
+            wakeLock?.release()
         }
     }
 
