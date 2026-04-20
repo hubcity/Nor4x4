@@ -1,4 +1,4 @@
-package com.example.nor4x4.timer
+package org.hubcitydev.nor4x4.timer
 
 import android.content.Context
 import android.os.PowerManager
@@ -6,7 +6,7 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import android.media.RingtoneManager
 import android.content.Intent
-import com.example.nor4x4.health.HealthServicesManager
+import org.hubcitydev.nor4x4.health.HealthServicesManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

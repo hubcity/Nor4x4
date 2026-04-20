@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.nor4x4"
+    namespace = "org.hubcitydev.nor4x4"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.nor4x4"
+        applicationId = "org.hubcitydev.nor4x4"
         minSdk = 30
         targetSdk = 34
         versionCode = 1

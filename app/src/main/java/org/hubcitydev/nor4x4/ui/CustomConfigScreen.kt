@@ -1,4 +1,4 @@
-package com.example.nor4x4.ui
+package org.hubcitydev.nor4x4.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -21,7 +21,7 @@ import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
 import androidx.wear.compose.material.Button
 import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.MaterialTheme
-import com.example.nor4x4.timer.WorkoutConfig
+import org.hubcitydev.nor4x4.timer.WorkoutConfig
 
 @Composable
 fun CustomConfigScreen(

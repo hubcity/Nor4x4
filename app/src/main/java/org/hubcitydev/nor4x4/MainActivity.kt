@@ -1,4 +1,4 @@
-package com.example.nor4x4
+package org.hubcitydev.nor4x4
 
 import android.os.Bundle
 import android.Manifest
@@ -12,10 +12,10 @@ import androidx.wear.compose.material.MaterialTheme
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.nor4x4.timer.TimerViewModel
-import com.example.nor4x4.ui.CustomConfigScreen
-import com.example.nor4x4.ui.StartScreen
-import com.example.nor4x4.ui.TimerScreen
+import org.hubcitydev.nor4x4.timer.TimerViewModel
+import org.hubcitydev.nor4x4.ui.CustomConfigScreen
+import org.hubcitydev.nor4x4.ui.StartScreen
+import org.hubcitydev.nor4x4.ui.TimerScreen
 import androidx.compose.runtime.collectAsState
 
 class MainActivity : ComponentActivity() {

@@ -1,9 +1,9 @@
-package com.example.nor4x4.timer
+package org.hubcitydev.nor4x4.timer
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import kotlinx.coroutines.flow.StateFlow
-import com.example.nor4x4.timer.WorkoutConfig
+import org.hubcitydev.nor4x4.timer.WorkoutConfig
 
 class TimerViewModel(application: Application) : AndroidViewModel(application) {
     

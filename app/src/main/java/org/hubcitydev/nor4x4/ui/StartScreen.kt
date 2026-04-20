@@ -1,4 +1,4 @@
-package com.example.nor4x4.ui
+package org.hubcitydev.nor4x4.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material.Button
 import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.Text
-import com.example.nor4x4.timer.WorkoutConfig
+import org.hubcitydev.nor4x4.timer.WorkoutConfig
 import androidx.wear.compose.material.Chip
 import androidx.compose.foundation.layout.fillMaxWidth
 

@@ -1,4 +1,4 @@
-package com.example.nor4x4.timer
+package org.hubcitydev.nor4x4.timer
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

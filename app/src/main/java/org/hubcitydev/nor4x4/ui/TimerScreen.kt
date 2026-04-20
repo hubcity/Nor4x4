@@ -1,4 +1,4 @@
-package com.example.nor4x4.ui
+package org.hubcitydev.nor4x4.ui
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
@@ -24,8 +24,8 @@ import androidx.compose.ui.unit.sp
 import androidx.wear.compose.material.Button
 import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.Text
-import com.example.nor4x4.timer.TimerPhase
-import com.example.nor4x4.timer.TimerViewModel
+import org.hubcitydev.nor4x4.timer.TimerPhase
+import org.hubcitydev.nor4x4.timer.TimerViewModel
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

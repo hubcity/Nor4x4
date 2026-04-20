@@ -1,4 +1,4 @@
-package com.example.nor4x4.timer
+package org.hubcitydev.nor4x4.timer
 
 sealed class TimerPhase(val displayName: String, val durationSeconds: Int) {
     class WarmUp(durationSeconds: Int) : TimerPhase("Warm Up", durationSeconds)
