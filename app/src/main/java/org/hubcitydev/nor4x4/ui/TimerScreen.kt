@@ -29,6 +29,7 @@ import org.hubcitydev.nor4x4.timer.TimerViewModel
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.ui.semantics.Role
 import androidx.compose.foundation.layout.Box
 import androidx.compose.ui.graphics.Color
 
@@ -56,7 +57,7 @@ fun TimerScreen(viewModel: TimerViewModel, onResetClick: () -> Unit) {
                     .fillMaxWidth()
                     .weight(0.2f)
                     .background(Color.DarkGray)
-                    .clickable { 
+                    .clickable(role = Role.Button) {
                         viewModel.resetTimer()
                         onResetClick()
                     },
@@ -109,7 +110,7 @@ fun TimerScreen(viewModel: TimerViewModel, onResetClick: () -> Unit) {
                 .fillMaxWidth()
                 .weight(0.2f)
                 .background(MaterialTheme.colors.primary)
-                .clickable { viewModel.toggleTimer() },
+                .clickable(role = Role.Button) { viewModel.toggleTimer() },
             contentAlignment = Alignment.Center
         ) {
             Text(if (isRunning) "Pause" else "Start", color = Color.Black, fontWeight = FontWeight.Bold)
