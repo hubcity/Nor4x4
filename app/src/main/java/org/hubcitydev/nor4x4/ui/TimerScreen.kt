@@ -30,6 +30,8 @@ import org.hubcitydev.nor4x4.timer.TimerViewModel
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.foundation.layout.Box
 import androidx.compose.ui.graphics.Color
 
@@ -57,6 +59,7 @@ fun TimerScreen(viewModel: TimerViewModel, onResetClick: () -> Unit) {
                     .fillMaxWidth()
                     .weight(0.2f)
                     .background(Color.DarkGray)
+                    .semantics { contentDescription = "Reset timer" }
                     .clickable(role = Role.Button) {
                         viewModel.resetTimer()
                         onResetClick()
@@ -85,12 +88,24 @@ fun TimerScreen(viewModel: TimerViewModel, onResetClick: () -> Unit) {
             Text(
                 text = displayTime,
                 fontSize = 32.sp,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.semantics {
+                    contentDescription = if (currentPhase == TimerPhase.Finished) {
+                        "Heart Rate Range"
+                    } else {
+                        "$minutes minutes and $seconds seconds remaining"
+                    }
+                }
             )
             
             Spacer(modifier = Modifier.height(4.dp))
             
-            Row(verticalAlignment = Alignment.CenterVertically) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.semantics(mergeDescendants = true) {
+                    contentDescription = "Heart rate $displayHr beats per minute"
+                }
+            ) {
                 Text(
                     text = "$displayHr",
                     fontSize = 32.sp,
@@ -99,7 +114,7 @@ fun TimerScreen(viewModel: TimerViewModel, onResetClick: () -> Unit) {
                 Spacer(modifier = Modifier.width(4.dp))
                 Icon(
                     imageVector = Icons.Filled.Favorite,
-                    contentDescription = "Heart Rate",
+                    contentDescription = null,
                     tint = Color.Red
                 )
             }
@@ -110,6 +125,7 @@ fun TimerScreen(viewModel: TimerViewModel, onResetClick: () -> Unit) {
                 .fillMaxWidth()
                 .weight(0.2f)
                 .background(MaterialTheme.colors.primary)
+                .semantics { contentDescription = if (isRunning) "Pause timer" else "Start timer" }
                 .clickable(role = Role.Button) { viewModel.toggleTimer() },
             contentAlignment = Alignment.Center
         ) {
