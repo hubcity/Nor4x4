@@ -26,6 +26,8 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.wear.compose.material.CircularProgressIndicator
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.contentDescription
 
 @Composable
 fun StartScreen(
@@ -53,7 +55,9 @@ fun StartScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         if (isLoading) {
-            CircularProgressIndicator()
+            CircularProgressIndicator(
+                modifier = Modifier.semantics { contentDescription = "Loading..." }
+            )
         } else {
             Text(text = "Nor 4x4", style = MaterialTheme.typography.title2)
             Spacer(modifier = Modifier.height(16.dp))
@@ -63,6 +67,7 @@ fun StartScreen(
                     onStandardClick(WorkoutConfig()) 
                 },
                 label = { Text("Standard") },
+                secondaryLabel = { Text("4x4 default") },
                 modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(8.dp))
@@ -72,6 +77,7 @@ fun StartScreen(
                     onCustomClick() 
                 },
                 label = { Text("Custom") },
+                secondaryLabel = { Text("Adjust times") },
                 modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth()
             )
         }
