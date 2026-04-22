@@ -21,6 +21,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
 import androidx.wear.compose.material.Button
+import androidx.wear.compose.material.Chip
 import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.MaterialTheme
 import org.hubcitydev.nor4x4.timer.WorkoutConfig
@@ -50,16 +51,15 @@ fun CustomConfigScreen(
         
         item {
             Spacer(modifier = Modifier.height(16.dp))
-            Button(
+            Chip(
                 onClick = {
                     onStartClick(
                         WorkoutConfig(reps, warmupSeconds, intervalSeconds, recoverySeconds, cooldownSeconds)
                     )
                 },
-                modifier = Modifier.padding(bottom = 32.dp)
-            ) {
-                Text("Start")
-            }
+                modifier = Modifier.padding(bottom = 32.dp),
+                label = { Text("Start") }
+            )
         }
     }
 }
