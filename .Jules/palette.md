@@ -8,3 +8,7 @@
 ## 2026-04-22 - Jetpack Compose Timer Formats and Progress Accessibility
 **Learning:** Timer formatting (like "04:00") is read poorly by TalkBack ("four colon zero zero"). Furthermore, `CircularProgressIndicator` instances without semantic descriptions offer zero feedback to non-visual users during loading states.
 **Action:** Use `Modifier.semantics { contentDescription = ... }` to map text values like "04:00" to natural language properties ("4 minutes and 0 seconds") and add loading descriptions to ambiguous indicators.
+## 2026-04-24 - Improve TalkBack on Formatted Text
+
+**Learning:** When using `Modifier.semantics { contentDescription = ... }` on a `Text` element that displays formatted visual information (like "04:30"), TalkBack will often read both the visual text *and* the content description redundantly.
+**Action:** Use `Modifier.clearAndSetSemantics { contentDescription = ... }` instead on these elements to ensure only the natural language description (e.g., "4 minutes and 30 seconds remaining") is announced by screen readers.

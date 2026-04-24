@@ -15,8 +15,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
@@ -77,7 +78,7 @@ private fun ConfigRow(label: String, value: String, valueDescription: String = v
         ) {
             Button(onClick = { onChange(-1) }, modifier = Modifier.semantics { contentDescription = "Decrease $label" }) { Text("-") }
             Spacer(modifier = Modifier.width(8.dp))
-            Text(value, style = MaterialTheme.typography.body1, modifier = Modifier.width(50.dp).semantics { contentDescription = valueDescription }, textAlign = TextAlign.Center)
+            Text(value, style = MaterialTheme.typography.body1, modifier = Modifier.width(50.dp).clearAndSetSemantics { contentDescription = valueDescription }, textAlign = TextAlign.Center)
             Spacer(modifier = Modifier.width(8.dp))
             Button(onClick = { onChange(1) }, modifier = Modifier.semantics { contentDescription = "Increase $label" }) { Text("+") }
         }
