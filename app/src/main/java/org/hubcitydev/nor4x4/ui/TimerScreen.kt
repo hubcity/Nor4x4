@@ -39,17 +39,9 @@ import androidx.compose.ui.graphics.Color
 @Composable
 fun TimerScreen(viewModel: TimerViewModel, onResetClick: () -> Unit) {
     val currentPhase by viewModel.currentPhase.collectAsState()
-    val timeLeft by viewModel.timeLeftInPhase.collectAsState()
     val isRunning by viewModel.isRunning.collectAsState()
-    val heartRate by viewModel.heartRate.collectAsState()
-    val maxHeartRate by viewModel.maxHeartRate.collectAsState()
-    val minHeartRate by viewModel.minHeartRate.collectAsState()
-
-    val minutes = timeLeft / 60
-    val seconds = timeLeft % 60
-    
-    val displayTime = if (currentPhase == TimerPhase.Finished) "HR Range" else String.format("%02d:%02d", minutes, seconds)
-    val displayHr = if (currentPhase == TimerPhase.Finished) "${minHeartRate.toInt()}-${maxHeartRate.toInt()}" else heartRate.toInt().toString()
+    val displayTime by viewModel.displayTime.collectAsState()
+    val displayHr by viewModel.displayHr.collectAsState()
 
     Column(
         modifier = Modifier.fillMaxSize()
