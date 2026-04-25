@@ -22,6 +22,8 @@ object TimerManager {
     private var vibrator: Vibrator? = null
     private var applicationContext: Context? = null
     private var wakeLock: PowerManager.WakeLock? = null
+    private var cachedVibrationEffect: VibrationEffect? = null
+    private var cachedRingtone: android.media.Ringtone? = null
 
     private var phases: List<TimerPhase> = listOf(TimerPhase.Finished)
     private var currentPhaseIndex = 0
@@ -61,6 +63,18 @@ object TimerManager {
             
             val powerManager = context.getSystemService(Context.POWER_SERVICE) as PowerManager
             wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Nor4x4:TimerWakeLock")
+
+            val timings = longArrayOf(0, 250, 250, 500, 250, 750)
+            val amplitudes = intArrayOf(0, 255, 0, 255, 0, 255)
+            cachedVibrationEffect = VibrationEffect.createWaveform(timings, amplitudes, -1)
+
+            try {
+                val notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+                    ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+                cachedRingtone = RingtoneManager.getRingtone(applicationContext, notification)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
     }
 
@@ -174,21 +188,32 @@ object TimerManager {
 
     private fun triggerFeedback() {
         if (vibrator?.hasVibrator() == true) {
-            val timings = longArrayOf(0, 250, 250, 500, 250, 750)
-            val amplitudes = intArrayOf(0, 255, 0, 255, 0, 255)
-            val effect = VibrationEffect.createWaveform(timings, amplitudes, -1)
+            val effect = cachedVibrationEffect ?: run {
+                val timings = longArrayOf(0, 250, 250, 500, 250, 750)
+                val amplitudes = intArrayOf(0, 255, 0, 255, 0, 255)
+                VibrationEffect.createWaveform(timings, amplitudes, -1).also {
+                    cachedVibrationEffect = it
+                }
+            }
             vibrator?.vibrate(effect)
         }
         
         try {
-            val notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
-                ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-            applicationContext?.let { ctx ->
-                val r = RingtoneManager.getRingtone(ctx, notification)
-                r.play()
+            val r = cachedRingtone ?: run {
+                val notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+                    ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+                applicationContext?.let { ctx ->
+                    RingtoneManager.getRingtone(ctx, notification).also {
+                        cachedRingtone = it
+                    }
+                }
+            }
+
+            r?.let { ringtone ->
+                ringtone.play()
                 scope.launch {
                     delay(3000)
-                    r.stop()
+                    ringtone.stop()
                 }
             }
         } catch (e: Exception) {
