@@ -30,6 +30,7 @@ import org.hubcitydev.nor4x4.timer.TimerViewModel
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.clearAndSetSemantics
@@ -95,7 +96,7 @@ fun TimerScreen(viewModel: TimerViewModel, onResetClick: () -> Unit) {
             
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.semantics(mergeDescendants = true) {
+                modifier = Modifier.clearAndSetSemantics {
                     contentDescription = "Heart rate $displayHr beats per minute"
                 }
             ) {

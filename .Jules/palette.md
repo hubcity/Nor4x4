@@ -1,3 +1,6 @@
+## 2024-05-14 - Prevent TalkBack from redundantly announcing visual text
+**Learning:** When using Jetpack Compose, applying a custom `contentDescription` to a `Text` composable using standard `Modifier.semantics` causes screen readers like TalkBack to read both the visible text and the content description. This results in redundant readouts like "05:00, 5 minutes and 0 seconds remaining".
+**Action:** Always use `Modifier.clearAndSetSemantics` instead of `Modifier.semantics` when applying a custom content description to a `Text` element. This clears the literal text from the semantic tree, ensuring only the intended natural language string is announced.
 ## 2024-04-25 - Jetpack Compose Box Accessibility
 **Learning:** Custom clickable components created with `Box` and `Modifier.clickable` in Jetpack Compose for Wear OS do not automatically announce their role as buttons to screen readers, unlike the standard `Button` component.
 **Action:** Always add `role = Role.Button` to `Modifier.clickable()` when building custom button-like elements using generic containers like `Box` or `Row`.
