@@ -32,6 +32,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.foundation.layout.Box
 import androidx.compose.ui.graphics.Color
 
@@ -89,7 +90,7 @@ fun TimerScreen(viewModel: TimerViewModel, onResetClick: () -> Unit) {
                 text = displayTime,
                 fontSize = 32.sp,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.semantics {
+                modifier = Modifier.clearAndSetSemantics {
                     contentDescription = if (currentPhase == TimerPhase.Finished) {
                         "Heart Rate Range"
                     } else {
