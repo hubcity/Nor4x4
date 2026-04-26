@@ -9,6 +9,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.wear.compose.material.MaterialTheme
+import androidx.wear.compose.material.Scaffold
+import androidx.wear.compose.material.TimeText
+import androidx.wear.compose.material.Vignette
+import androidx.wear.compose.material.VignettePosition
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -35,47 +39,52 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             MaterialTheme {
-                val navController = rememberNavController()
-                
-                val isWorkoutActive = timerViewModel.isWorkoutActive.collectAsState().value
-                val startDest = if (isWorkoutActive) "timer" else "start"
-                
-                NavHost(
-                    navController = navController,
-                    startDestination = startDest
+                Scaffold(
+                    timeText = { TimeText() },
+                    vignette = { Vignette(vignettePosition = VignettePosition.TopAndBottom) }
                 ) {
-                    composable("start") {
-                        StartScreen(
-                            onStandardClick = { config ->
-                                timerViewModel.setConfig(config)
-                                timerViewModel.setWorkoutActive(true)
-                                navController.navigate("timer") { popUpTo(0) }
-                            },
-                            onCustomClick = {
-                                navController.navigate("custom_config")
-                            }
-                        )
-                    }
-                    composable("custom_config") {
-                        val initialConfig = timerViewModel.getSavedCustomConfig()
-                        CustomConfigScreen(
-                            initialConfig = initialConfig,
-                            onStartClick = { config ->
-                                timerViewModel.saveCustomConfig(config)
-                                timerViewModel.setConfig(config)
-                                timerViewModel.setWorkoutActive(true)
-                                navController.navigate("timer") { popUpTo(0) }
-                            }
-                        )
-                    }
-                    composable("timer") {
-                        TimerScreen(
-                            viewModel = timerViewModel,
-                            onResetClick = {
-                                timerViewModel.setWorkoutActive(false)
-                                navController.navigate("start") { popUpTo(0) }
-                            }
-                        )
+                    val navController = rememberNavController()
+
+                    val isWorkoutActive = timerViewModel.isWorkoutActive.collectAsState().value
+                    val startDest = if (isWorkoutActive) "timer" else "start"
+
+                    NavHost(
+                        navController = navController,
+                        startDestination = startDest
+                    ) {
+                        composable("start") {
+                            StartScreen(
+                                onStandardClick = { config ->
+                                    timerViewModel.setConfig(config)
+                                    timerViewModel.setWorkoutActive(true)
+                                    navController.navigate("timer") { popUpTo(0) }
+                                },
+                                onCustomClick = {
+                                    navController.navigate("custom_config")
+                                }
+                            )
+                        }
+                        composable("custom_config") {
+                            val initialConfig = timerViewModel.getSavedCustomConfig()
+                            CustomConfigScreen(
+                                initialConfig = initialConfig,
+                                onStartClick = { config ->
+                                    timerViewModel.saveCustomConfig(config)
+                                    timerViewModel.setConfig(config)
+                                    timerViewModel.setWorkoutActive(true)
+                                    navController.navigate("timer") { popUpTo(0) }
+                                }
+                            )
+                        }
+                        composable("timer") {
+                            TimerScreen(
+                                viewModel = timerViewModel,
+                                onResetClick = {
+                                    timerViewModel.setWorkoutActive(false)
+                                    navController.navigate("start") { popUpTo(0) }
+                                }
+                            )
+                        }
                     }
                 }
             }
