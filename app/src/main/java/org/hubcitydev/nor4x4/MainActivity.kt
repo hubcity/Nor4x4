@@ -102,11 +102,11 @@ class MainActivity : ComponentActivity() {
                         Box(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .height(40.dp)
+                                .height(30.dp)
                                 .background(
                                     brush = Brush.verticalGradient(
                                         0f to Color.Black,
-                                        0.6f to Color.Black,
+                                        0.7f to Color.Black,
                                         1f to Color.Transparent
                                     )
                                 )

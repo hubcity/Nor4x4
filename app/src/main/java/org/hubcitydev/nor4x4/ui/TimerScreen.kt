@@ -75,7 +75,7 @@ fun TimerScreen(viewModel: TimerViewModel, onResetClick: () -> Unit) {
         }
 
         Column(
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier.padding(top = 26.dp, start = 16.dp, end = 16.dp, bottom = 26.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {

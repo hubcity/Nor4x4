@@ -64,6 +64,7 @@ fun StartScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
+            // item { Spacer(modifier = Modifier.height(20.dp)) }
             if (isLoading) {
                 item {
                     CircularProgressIndicator(
