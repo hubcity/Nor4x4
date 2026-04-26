@@ -11,7 +11,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.filled.Remove
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -105,7 +105,7 @@ private fun ConfigRow(label: String, value: String, valueDescription: String = v
                 modifier = Modifier.size(ButtonDefaults.SmallButtonSize),
                 colors = ButtonDefaults.secondaryButtonColors()
             ) {
-                Icon(Icons.Default.Clear, contentDescription = "Decrease $label")
+                Icon(Icons.Default.Remove, contentDescription = "Decrease $label")
             }
             
             Text(

@@ -11,7 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Refresh
@@ -132,7 +132,7 @@ fun TimerScreen(viewModel: TimerViewModel, onResetClick: () -> Unit) {
                     modifier = Modifier.size(ButtonDefaults.SmallButtonSize)
                 ) {
                     Icon(
-                        imageVector = if (isRunning) Icons.Default.Clear else Icons.Default.PlayArrow,
+                        imageVector = if (isRunning) Icons.Default.Pause else Icons.Default.PlayArrow,
                         contentDescription = if (isRunning) "Pause timer" else "Start timer"
                     )
                 }
