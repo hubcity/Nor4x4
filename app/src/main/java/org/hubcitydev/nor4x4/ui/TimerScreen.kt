@@ -43,6 +43,7 @@ fun TimerScreen(viewModel: TimerViewModel, onResetClick: () -> Unit) {
     val isRunning by viewModel.isRunning.collectAsState()
     val displayTime by viewModel.displayTime.collectAsState()
     val displayHr by viewModel.displayHr.collectAsState()
+    val timeLeftInPhase by viewModel.timeLeftInPhase.collectAsState()
 
     Column(
         modifier = Modifier.fillMaxSize()
@@ -87,6 +88,8 @@ fun TimerScreen(viewModel: TimerViewModel, onResetClick: () -> Unit) {
                     contentDescription = if (currentPhase == TimerPhase.Finished) {
                         "Heart Rate Range"
                     } else {
+                        val minutes = timeLeftInPhase / 60
+                        val seconds = timeLeftInPhase % 60
                         "$minutes minutes and $seconds seconds remaining"
                     }
                 }
