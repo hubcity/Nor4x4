@@ -67,7 +67,7 @@ fun TimerScreen(viewModel: TimerViewModel, onResetClick: () -> Unit) {
         if (currentPhase != TimerPhase.Finished) {
             CircularProgressIndicator(
                 progress = progress,
-                modifier = Modifier.fillMaxSize().padding(4.dp),
+                modifier = Modifier.fillMaxSize().padding(10.dp),
                 indicatorColor = phaseColor,
                 trackColor = phaseColor.copy(alpha = 0.2f),
                 strokeWidth = 6.dp
@@ -90,7 +90,7 @@ fun TimerScreen(viewModel: TimerViewModel, onResetClick: () -> Unit) {
             
             Text(
                 text = displayTime,
-                style = if (currentPhase == TimerPhase.Finished) MaterialTheme.typography.title3 else MaterialTheme.typography.display2,
+                style = MaterialTheme.typography.display3,
                 modifier = Modifier.semantics {
                     contentDescription = if (currentPhase == TimerPhase.Finished) {
                         "Heart Rate Range"
@@ -112,12 +112,12 @@ fun TimerScreen(viewModel: TimerViewModel, onResetClick: () -> Unit) {
                     imageVector = Icons.Filled.Favorite,
                     contentDescription = null,
                     tint = Color.Red,
-                    modifier = Modifier.size(16.dp)
+                    modifier = Modifier.size(20.dp)
                 )
                 Spacer(modifier = Modifier.width(4.dp))
                 Text(
                     text = displayHr,
-                    style = MaterialTheme.typography.title3
+                    style = MaterialTheme.typography.display3
                 )
             }
 
