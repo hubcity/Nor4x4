@@ -68,11 +68,11 @@ fun CustomConfigScreen(
                 )
             }
             
-            item { ConfigRow("Reps", reps.toString(), valueDescription = "$reps repetitions") { reps = (reps + it).coerceAtLeast(1) } }
-            item { ConfigRow("Warmup", formatTime(warmupSeconds), valueDescription = formatTimeDescription(warmupSeconds)) { warmupSeconds = (warmupSeconds + it * 30).coerceAtLeast(0) } }
-            item { ConfigRow("Interval", formatTime(intervalSeconds), valueDescription = formatTimeDescription(intervalSeconds)) { intervalSeconds = (intervalSeconds + it * 30).coerceAtLeast(30) } }
-            item { ConfigRow("Recovery", formatTime(recoverySeconds), valueDescription = formatTimeDescription(recoverySeconds)) { recoverySeconds = (recoverySeconds + it * 30).coerceAtLeast(0) } }
-            item { ConfigRow("Cooldown", formatTime(cooldownSeconds), valueDescription = formatTimeDescription(cooldownSeconds)) { cooldownSeconds = (cooldownSeconds + it * 30).coerceAtLeast(0) } }
+            item { ConfigRow("Reps", reps.toString(), valueDescription = "$reps repetitions", decreaseEnabled = reps > 1) { reps = (reps + it).coerceAtLeast(1) } }
+            item { ConfigRow("Warmup", formatTime(warmupSeconds), valueDescription = formatTimeDescription(warmupSeconds), decreaseEnabled = warmupSeconds > 0) { warmupSeconds = (warmupSeconds + it * 30).coerceAtLeast(0) } }
+            item { ConfigRow("Interval", formatTime(intervalSeconds), valueDescription = formatTimeDescription(intervalSeconds), decreaseEnabled = intervalSeconds > 30) { intervalSeconds = (intervalSeconds + it * 30).coerceAtLeast(30) } }
+            item { ConfigRow("Recovery", formatTime(recoverySeconds), valueDescription = formatTimeDescription(recoverySeconds), decreaseEnabled = recoverySeconds > 0) { recoverySeconds = (recoverySeconds + it * 30).coerceAtLeast(0) } }
+            item { ConfigRow("Cooldown", formatTime(cooldownSeconds), valueDescription = formatTimeDescription(cooldownSeconds), decreaseEnabled = cooldownSeconds > 0) { cooldownSeconds = (cooldownSeconds + it * 30).coerceAtLeast(0) } }
             
             item {
                 Spacer(modifier = Modifier.height(16.dp))
@@ -91,7 +91,7 @@ fun CustomConfigScreen(
 }
 
 @Composable
-private fun ConfigRow(label: String, value: String, valueDescription: String = value, onChange: (Int) -> Unit) {
+private fun ConfigRow(label: String, value: String, valueDescription: String = value, decreaseEnabled: Boolean = true, onChange: (Int) -> Unit) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.padding(vertical = 8.dp)
@@ -105,7 +105,8 @@ private fun ConfigRow(label: String, value: String, valueDescription: String = v
             Button(
                 onClick = { onChange(-1) },
                 modifier = Modifier.size(ButtonDefaults.SmallButtonSize),
-                colors = ButtonDefaults.secondaryButtonColors()
+                colors = ButtonDefaults.secondaryButtonColors(),
+                enabled = decreaseEnabled
             ) {
                 Icon(Icons.Default.Remove, contentDescription = "Decrease $label")
             }
