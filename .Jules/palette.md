@@ -14,3 +14,6 @@
 ## 2024-04-25 - Jetpack Compose Modifier.clearAndSetSemantics
 **Learning:** Using `Modifier.semantics` on Text elements that already have visual formatting causes screen readers to announce both the visual text and the content description sequentially (e.g., "04:00, four minutes and zero seconds remaining"). This redundant feedback is confusing and verbose, especially during a workout.
 **Action:** Always use `Modifier.clearAndSetSemantics` instead of standard `Modifier.semantics` on Text elements when you want to completely replace the default textual announcement with a custom content description.
+## 2024-05-18 - Visual feedback for bounded limits
+**Learning:** In custom configuration screens, numeric settings often have a minimum allowed limit (like minimum 1 rep or minimum 30 seconds interval). Leaving the decrement button fully interactive when this limit is reached results in fruitless clicks and user confusion.
+**Action:** Always provide visual feedback by dynamically setting the `enabled` state of decrease/increase buttons when the upper or lower bounds are reached.
