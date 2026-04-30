@@ -17,3 +17,6 @@
 ## 2024-05-18 - Visual feedback for bounded limits
 **Learning:** In custom configuration screens, numeric settings often have a minimum allowed limit (like minimum 1 rep or minimum 30 seconds interval). Leaving the decrement button fully interactive when this limit is reached results in fruitless clicks and user confusion.
 **Action:** Always provide visual feedback by dynamically setting the `enabled` state of decrease/increase buttons when the upper or lower bounds are reached.
+## 2024-05-19 - Screen Reader Heading Navigation
+**Learning:** In Wear OS applications, relying solely on sequential reading can be tedious for screen reader users on small screens. Marking key structural elements (like screen titles) as headings allows TalkBack users to quickly jump between sections.
+**Action:** Always add `Modifier.semantics { heading() }` to screen titles or major section dividers to improve navigational accessibility.
