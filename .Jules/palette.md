@@ -20,3 +20,6 @@
 ## 2024-05-19 - Screen Reader Heading Navigation
 **Learning:** In Wear OS applications, relying solely on sequential reading can be tedious for screen reader users on small screens. Marking key structural elements (like screen titles) as headings allows TalkBack users to quickly jump between sections.
 **Action:** Always add `Modifier.semantics { heading() }` to screen titles or major section dividers to improve navigational accessibility.
+## 2024-05-20 - Adding Icons to Chips and Buttons
+**Learning:** Adding icons to buttons and chips makes them easier to quickly identify, especially on Wear OS where screen real estate is small. This provides a more visual and intuitive cue compared to text alone.
+**Action:** Always consider adding representative icons to primary action buttons and chips in Wear OS applications to enhance scanability and user experience.

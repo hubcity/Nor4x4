@@ -30,6 +30,12 @@ import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.PositionIndicator
 import androidx.wear.compose.material.Scaffold
 import androidx.wear.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.foundation.layout.size
+import androidx.wear.compose.material.Icon
+import androidx.wear.compose.material.ChipDefaults
 import org.hubcitydev.nor4x4.timer.WorkoutConfig
 
 @Composable
@@ -90,6 +96,13 @@ fun StartScreen(
                         },
                         label = { Text("Standard") },
                         secondaryLabel = { Text("4x4 default") },
+                        icon = {
+                            Icon(
+                                imageVector = Icons.Default.PlayArrow,
+                                contentDescription = null,
+                                modifier = Modifier.size(ChipDefaults.IconSize)
+                            )
+                        },
                         modifier = Modifier.fillMaxWidth()
                     )
                 }
@@ -104,6 +117,13 @@ fun StartScreen(
                         },
                         label = { Text("Custom") },
                         secondaryLabel = { Text("Adjust times") },
+                        icon = {
+                            Icon(
+                                imageVector = Icons.Default.Settings,
+                                contentDescription = null,
+                                modifier = Modifier.size(ChipDefaults.IconSize)
+                            )
+                        },
                         modifier = Modifier.fillMaxWidth()
                     )
                 }
