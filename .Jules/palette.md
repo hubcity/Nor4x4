@@ -20,3 +20,7 @@
 ## 2024-05-19 - Screen Reader Heading Navigation
 **Learning:** In Wear OS applications, relying solely on sequential reading can be tedious for screen reader users on small screens. Marking key structural elements (like screen titles) as headings allows TalkBack users to quickly jump between sections.
 **Action:** Always add `Modifier.semantics { heading() }` to screen titles or major section dividers to improve navigational accessibility.
+
+## 2024-05-02 - [Wear OS Chip Icons & Progress Indicator Semantics]
+**Learning:** Using `Modifier.clearAndSetSemantics` is crucial for ambiguous visual indicators like `CircularProgressIndicator` on Wear OS to avoid TalkBack reading out literal visual formats instead of the intended loading text. Also, Wear OS `Chip` icons should be sized with `ChipDefaults.IconSize` and have `contentDescription = null` if text labels are already present to avoid redundant announcements.
+**Action:** Always verify `CircularProgressIndicator` semantics and appropriately size/silence decorative `Chip` icons in Wear OS UI components.

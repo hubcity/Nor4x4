@@ -24,8 +24,15 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
 import androidx.wear.compose.foundation.lazy.rememberScalingLazyListState
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.wear.compose.material.Chip
+import androidx.wear.compose.material.ChipDefaults
 import androidx.wear.compose.material.CircularProgressIndicator
+import androidx.wear.compose.material.Icon
 import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.PositionIndicator
 import androidx.wear.compose.material.Scaffold
@@ -69,7 +76,7 @@ fun StartScreen(
             if (isLoading) {
                 item {
                     CircularProgressIndicator(
-                        modifier = Modifier.semantics { contentDescription = "Loading..." }
+                        modifier = Modifier.clearAndSetSemantics { contentDescription = "Loading..." }
                     )
                 }
             } else {
@@ -88,6 +95,7 @@ fun StartScreen(
                             isLoading = true
                             onStandardClick(WorkoutConfig()) 
                         },
+                        icon = { Icon(Icons.Default.PlayArrow, contentDescription = null, modifier = Modifier.size(ChipDefaults.IconSize)) },
                         label = { Text("Standard") },
                         secondaryLabel = { Text("4x4 default") },
                         modifier = Modifier.fillMaxWidth()
@@ -102,6 +110,7 @@ fun StartScreen(
                             isLoading = true
                             onCustomClick() 
                         },
+                        icon = { Icon(Icons.Default.Settings, contentDescription = null, modifier = Modifier.size(ChipDefaults.IconSize)) },
                         label = { Text("Custom") },
                         secondaryLabel = { Text("Adjust times") },
                         modifier = Modifier.fillMaxWidth()
