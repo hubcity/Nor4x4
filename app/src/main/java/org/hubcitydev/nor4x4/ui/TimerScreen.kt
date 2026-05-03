@@ -102,7 +102,26 @@ fun TimerScreen(viewModel: TimerViewModel, onResetClick: () -> Unit) {
                     contentDescription = if (currentPhase == TimerPhase.Finished) {
                         "Heart Rate Range"
                     } else {
-                        "$minutes minutes and $seconds seconds remaining"
+                        val minuteStr = when (minutes) {
+                            0 -> ""
+                            1 -> "1 minute"
+                            else -> "$minutes minutes"
+                        }
+
+                        val secondStr = when (seconds) {
+                            0 -> ""
+                            1 -> "1 second"
+                            else -> "$seconds seconds"
+                        }
+
+                        val timeStr = when {
+                            minuteStr.isNotEmpty() && secondStr.isNotEmpty() -> "$minuteStr and $secondStr"
+                            minuteStr.isNotEmpty() -> minuteStr
+                            secondStr.isNotEmpty() -> secondStr
+                            else -> "0 seconds"
+                        }
+
+                        "$timeStr remaining"
                     }
                 }
             )

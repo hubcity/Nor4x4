@@ -143,5 +143,23 @@ private fun formatTime(seconds: Int): String {
 private fun formatTimeDescription(seconds: Int): String {
     val m = seconds / 60
     val s = seconds % 60
-    return "$m minutes and $s seconds"
+
+    val minuteStr = when (m) {
+        0 -> ""
+        1 -> "1 minute"
+        else -> "$m minutes"
+    }
+
+    val secondStr = when (s) {
+        0 -> ""
+        1 -> "1 second"
+        else -> "$s seconds"
+    }
+
+    return when {
+        minuteStr.isNotEmpty() && secondStr.isNotEmpty() -> "$minuteStr and $secondStr"
+        minuteStr.isNotEmpty() -> minuteStr
+        secondStr.isNotEmpty() -> secondStr
+        else -> "0 seconds"
+    }
 }
