@@ -24,3 +24,7 @@
 ## 2024-05-02 - [Wear OS Chip Icons & Progress Indicator Semantics]
 **Learning:** Using `Modifier.clearAndSetSemantics` is crucial for ambiguous visual indicators like `CircularProgressIndicator` on Wear OS to avoid TalkBack reading out literal visual formats instead of the intended loading text. Also, Wear OS `Chip` icons should be sized with `ChipDefaults.IconSize` and have `contentDescription = null` if text labels are already present to avoid redundant announcements.
 **Action:** Always verify `CircularProgressIndicator` semantics and appropriately size/silence decorative `Chip` icons in Wear OS UI components.
+## 2026-05-03 - Natural Language Timer Accessibility\n**Learning:** TalkBack awkwardly reads "0 seconds" or pluralizes "1 minutes" if singulars and zeroes aren't explicitly handled in  logic. Reading "1 minute and 0 seconds" is verbose for a workout timer.\n**Action:** When mapping time to string formats for , always handle singular/plural strings (e.g. '1 minute') and omit the zero segments entirely for brevity and natural flow.
+## 2026-05-03 - Natural Language Timer Accessibility
+**Learning:** TalkBack awkwardly reads '0 seconds' or pluralizes '1 minutes' if singulars and zeroes aren't explicitly handled in content description logic. Reading '1 minute and 0 seconds' is verbose for a workout timer.
+**Action:** When mapping time to string formats for screen readers, always handle singular/plural strings (e.g., '1 minute') and omit the zero segments entirely for brevity and natural flow.
