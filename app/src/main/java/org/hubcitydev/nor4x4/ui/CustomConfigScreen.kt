@@ -28,8 +28,10 @@ import androidx.compose.ui.unit.dp
 import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
 import androidx.wear.compose.foundation.lazy.rememberScalingLazyListState
 import androidx.wear.compose.material.Button
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.wear.compose.material.ButtonDefaults
 import androidx.wear.compose.material.Chip
+import androidx.wear.compose.material.ChipDefaults
 import androidx.wear.compose.material.Icon
 import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.PositionIndicator
@@ -85,8 +87,10 @@ fun CustomConfigScreen(
                             WorkoutConfig(reps, warmupSeconds, intervalSeconds, recoverySeconds, cooldownSeconds)
                         )
                     },
-                    modifier = Modifier.padding(bottom = 32.dp),
-                    label = { Text("Start") }
+                    icon = { Icon(Icons.Default.PlayArrow, contentDescription = null, modifier = Modifier.size(ChipDefaults.IconSize)) },
+                    modifier = Modifier.fillMaxWidth().padding(bottom = 32.dp),
+                    label = { Text("Start") },
+                    secondaryLabel = { Text("Custom workout") }
                 )
             }
         }

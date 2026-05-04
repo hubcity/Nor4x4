@@ -28,3 +28,6 @@
 ## 2026-05-03 - Natural Language Timer Accessibility
 **Learning:** TalkBack awkwardly reads '0 seconds' or pluralizes '1 minutes' if singulars and zeroes aren't explicitly handled in content description logic. Reading '1 minute and 0 seconds' is verbose for a workout timer.
 **Action:** When mapping time to string formats for screen readers, always handle singular/plural strings (e.g., '1 minute') and omit the zero segments entirely for brevity and natural flow.
+## 2024-05-19 - Wear OS Primary Action Chip Layout
+**Learning:** Primary action buttons (like a "Start" Chip at the bottom of a configuration screen) that don't span the full width of the screen look unpolished and are harder to tap. Wear OS design guidelines favor large, full-width touch targets for primary bottom actions.
+**Action:** Always apply `Modifier.fillMaxWidth()` to primary bottom-action `Chip` components to ensure they span the screen width and provide a clear, accessible touch target. Adding icons and secondary labels also reinforces intent and maintains consistency with other screens.
